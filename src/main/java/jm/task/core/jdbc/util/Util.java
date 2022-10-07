@@ -16,7 +16,6 @@ public class Util {
     private static final String PASSWORD = "root";
     public static Connection getConnection () throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        //DriverManager drive =
         Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         return connection;
     }
