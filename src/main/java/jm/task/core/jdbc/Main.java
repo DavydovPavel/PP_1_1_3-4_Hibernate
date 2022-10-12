@@ -19,7 +19,7 @@ public class Main {
         for (User user: userService.getAllUsers()) {
             System.out.println(user.toString());
         }
-        userService.removeUserById(1);
+        userService.removeUserById(4);
         System.out.println("------------");
         for (User user: userService.getAllUsers()) {
             System.out.println(user.toString());
@@ -30,7 +30,6 @@ public class Main {
             System.out.println(user.toString());
         }
         userService.dropUsersTable();
-
 
     }
 }

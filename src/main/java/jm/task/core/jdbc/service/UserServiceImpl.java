@@ -4,16 +4,12 @@ import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.util.Util;
-import org.hibernate.grammars.hql.HqlParser;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDao user = new UserDaoJDBCImpl();
+    private UserDao user = new UserDaoHibernateImpl();
+
+    //private UserDao user = new UserDaoJDBCImpl();
 
     public void createUsersTable() {
         user.createUsersTable();
