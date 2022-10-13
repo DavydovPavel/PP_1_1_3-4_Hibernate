@@ -15,19 +15,25 @@ public class Util {
     private static final String PASSWORD = "root";
     private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
     private static final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName(DRIVER_CLASS);
         Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         return connection;
     }
-    public static SessionFactory getSession() {
-        Configuration config = new Configuration()
-                .setProperty("hibernate.connection.url", URL)
-                .setProperty("hibernate.connection.driver_class", DRIVER_CLASS)
-                .setProperty("hibernate.connection.username", USERNAME)
-                .setProperty("hibernate.connection.password", PASSWORD)
-                .setProperty("hibernate.dialect", HIBERNATE_DIALECT)
-                .addAnnotatedClass(User.class);
-        return config.buildSessionFactory();
+
+    private static SessionFactory sessionFactory;
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            sessionFactory = new Configuration()
+                    .setProperty("hibernate.connection.url", URL)
+                    .setProperty("hibernate.connection.driver_class", DRIVER_CLASS)
+                    .setProperty("hibernate.connection.username", USERNAME)
+                    .setProperty("hibernate.connection.password", PASSWORD)
+                    .setProperty("hibernate.dialect", HIBERNATE_DIALECT)
+                    .addAnnotatedClass(User.class)
+                    .buildSessionFactory();
+        }
+        return sessionFactory;
     }
 }
